@@ -1,10 +1,8 @@
-// import  { Metadata } from "next";
 import localFont from "next/font/local";
-// import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
-import ConvexClientProvider from '../components/providers/ConvexClientProviders'
-// import Footer from "@/components/Footer";
-// import { Toaster } from "react-hot-toast";
+import ConvexClientProvider from "../components/providers/ConvexClientProviders";
+import './globals.css'
+import Footer from "../components/Footer";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -17,14 +15,7 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-// export const metadata: Metadata = {
-//   title: "Code Craft",
-//   description: "Share and run code snippets",
-// };
-
-export default function RootLayout({
-  children,
-}) {
+export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
       <html lang="en">
@@ -33,13 +24,9 @@ export default function RootLayout({
         >
           <ConvexClientProvider>{children}</ConvexClientProvider>
 
-          {/* <Footer /> */}
-
-          {/* <Toaster /> */}
+          <Footer />
         </body>
       </html>
     </ClerkProvider>
   );
 }
-
-// https://emkc.org/api/v2/piston/runtimes
