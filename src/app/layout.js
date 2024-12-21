@@ -16,6 +16,7 @@ const geistMono = localFont({
 });
 
 export default function RootLayout({ children }) {
+  
   return (
     <ClerkProvider>
       <html lang="en">

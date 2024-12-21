@@ -5,6 +5,7 @@ import { useCodeEditorStore } from "../../../store/useCodeEditorStore";
 import { THEMES } from "../_constants";
 import { AnimatePresence, motion } from "framer-motion";
 import { CircleOff, Cloud, Github, Laptop, Moon, Palette, Sun } from "lucide-react";
+import useMounted from "../../../hooks/useMounted";
 
 const THEME_ICONS = {
     "vs-dark": <Moon className="size-4" />,
@@ -17,8 +18,8 @@ function ThemeSelector() {
   const [isOpen, setIsOpen] = useState(false);
   const { theme, setTheme } = useCodeEditorStore();
   const dropDownRef = useRef(null);
-  const [mounted , setMounted ] = useState(false);
   const currentTheme = THEMES.find((t) => t.id === theme);
+  const mounted = useMounted();
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -31,10 +32,6 @@ function ThemeSelector() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-
-  useEffect(()=>{
-    setMounted(true);
-  })
 
   if(!mounted) return null;
   return (
