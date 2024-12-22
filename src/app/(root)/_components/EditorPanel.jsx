@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 import { Editor } from "@monaco-editor/react";
 import { defineMonacoThemes } from "../_constants";
 import { useClerk } from "@clerk/nextjs";
-import {EditorPanelSkeleton, EditorViewSkeleton} from "./EditorPanelSkeleton";
+import {EditorPanelSkeleton} from "./EditorPanelSkeleton";
 import useMounted from "../../../hooks/useMounted";
 
 const EditorPanel = () => {
