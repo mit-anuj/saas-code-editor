@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useCodeEditorStore } from "../../../store/useCodeEditorStore";
 import { LANGUAGE_CONFIG } from "../_constants";
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronDownIcon, Sparkles } from "lucide-react";
+import { ChevronDownIcon, Lock, Sparkles } from "lucide-react";
 import Image from "next/image";
 import useMounted from '../../../hooks/useMounted'
 
