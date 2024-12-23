@@ -48,7 +48,7 @@ const OutputPanel = () => {
               </>
             ) : (
               <>
-                <Copy CheckCircleclassName="w-3.5 h-3.5" />
+                <Copy className="w-3.5 h-3.5" />
                 Copy
               </>
             )}

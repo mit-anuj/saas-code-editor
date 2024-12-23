@@ -18,7 +18,7 @@ const EditorPanel = () => {
   const clerk = useClerk();
   const mounted = useMounted();
   useEffect(() => {
-    const savedCode = localStorage.getItem(`code-editor-${language}`);
+    const savedCode = localStorage.getItem(`editor-code-${language}`);
     const newCode = savedCode || LANGUAGE_CONFIG[language].defaultCode;
     if (editor) editor.setValue(newCode);
   }, [editor, language]);
@@ -33,13 +33,13 @@ const EditorPanel = () => {
   const handleRefresh = ( ) => {
     const defaultCode = LANGUAGE_CONFIG[language].defaultCode;
     if(editor) editor.setValue(defaultCode);
-    localStorage.removeItem(`code-editor-${language}`);
+    localStorage.removeItem(`editor-code-${language}`);
   };
 
   const handleEditorChange = (value) => {
     if(value){
         console.log(value);
-        localStorage.setItem(`code-editor-${language}`,value);
+        localStorage.setItem(`editor-code-${language}`,value);
     }
   };
 
