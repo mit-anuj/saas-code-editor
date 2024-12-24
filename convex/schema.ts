@@ -36,7 +36,7 @@ export default defineSchema({
   }).index("by_snippet_id", ["snippetsId"]),
 
   stars: defineTable({
-    userId: v.id("users"),
+    userId: v.string(),
     snippetsId: v.id("snippets"),
   })
     .index("by_user_id", ["userId"])

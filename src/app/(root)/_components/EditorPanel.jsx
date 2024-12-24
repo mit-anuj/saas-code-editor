@@ -8,11 +8,12 @@ import { motion } from "framer-motion";
 import { Editor } from "@monaco-editor/react";
 import { defineMonacoThemes } from "../_constants";
 import { useClerk } from "@clerk/nextjs";
-import {EditorPanelSkeleton} from "./EditorPanelSkeleton";
+import { EditorPanelSkeleton } from "./EditorPanelSkeleton";
 import useMounted from "../../../hooks/useMounted";
+import ShareSnippetDialog from './ShareSnippetDialog';
 
 const EditorPanel = () => {
-  const [isSharedDialogUpen, setIsSharedDialogOpen] = useState(false);
+  const [isSharedDialogUpen, setIsShareDialogOpen] = useState(false);
   const { language, theme, fontSize, editor, setFontSize, setEditor } =
     useCodeEditorStore();
   const clerk = useClerk();
@@ -30,27 +31,27 @@ const EditorPanel = () => {
 
   if (!mounted) return null;
 
-  const handleRefresh = ( ) => {
+  const handleRefresh = () => {
     const defaultCode = LANGUAGE_CONFIG[language].defaultCode;
-    if(editor) editor.setValue(defaultCode);
+    if (editor) editor.setValue(defaultCode);
     localStorage.removeItem(`editor-code-${language}`);
   };
 
   const handleEditorChange = (value) => {
-    if(value){
-        console.log(value);
-        localStorage.setItem(`editor-code-${language}`,value);
+    if (value) {
+      console.log(value);
+      localStorage.setItem(`editor-code-${language}`, value);
     }
   };
 
   const handleFontSizeChange = (newSize) => {
-    const size = Math.min(Math.max(newSize,12),24);
+    const size = Math.min(Math.max(newSize, 12), 24);
     setFontSize(size);
-    localStorage.setItem("font-size",size.toString());
+    localStorage.setItem("font-size", size.toString());
   };
   return (
     <div className="relative">
-      <div>
+      <div className="relative bg-[#12121a]/90 backdrop-blur rounded-xl border border-white/[0.05] p-6">
         {/* Header */}
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-3">
@@ -114,8 +115,8 @@ const EditorPanel = () => {
         </div>
 
         {/* Editor */}
-        {clerk.loaded && (
-          <div className="relative group rounded-e-xl overflow-hidden ring-1 ring-white/[0.05]">
+        <div className="relative group rounded-xl overflow-hidden ring-1 ring-white/[0.05]">
+          {clerk.loaded && (
             <Editor
               height="600px"
               language={LANGUAGE_CONFIG[language].monacoLanguage}
@@ -145,10 +146,12 @@ const EditorPanel = () => {
                 },
               }}
             />
-          </div>
-        )}
+          )}
+
         {!clerk.loaded && <EditorPanelSkeleton />}
+        </div>
       </div>
+          {isSharedDialogUpen && <ShareSnippetDialog onClose={()=> setIsShareDialogOpen(false)} />}
     </div>
   );
 };
