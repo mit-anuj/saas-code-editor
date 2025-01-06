@@ -32,7 +32,7 @@ const SnippetsPage = () => {
       snippet.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       snippet.language.toLowerCase().includes(searchQuery.toLowerCase()) ||
       snippet.userName.toLowerCase().includes(searchQuery.toLowerCase());
-
+    
     const matchesLanguage =
       !selectedLanguage || snippet.language === selectedLanguage;
 

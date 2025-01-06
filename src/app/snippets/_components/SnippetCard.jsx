@@ -14,6 +14,7 @@ const SnippetCard = ({ snippet }) => {
   const { user } = useUser();
   const deleteSnippet = useMutation(api.snippets.deleteSnippet);
   const [isDeleting, setIsDeleting] = useState(false);
+  console.log(snippet)
 
   const handleDelete = async () => {
     setIsDeleting(true);

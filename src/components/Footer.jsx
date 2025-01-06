@@ -1,7 +1,10 @@
 import { Blocks } from "lucide-react";
 import Link from "next/link";
+import useMounted from "../hooks/useMounted";
 
 function Footer() {
+  const mounted = useMounted();
+  if(!mounted) return null;
   return (
     <footer className="relative border-t border-gray-800/50 mt-auto">
       <div className="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-gray-900 to-transparent" />
