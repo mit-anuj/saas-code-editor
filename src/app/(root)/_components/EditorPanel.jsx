@@ -39,7 +39,6 @@ const EditorPanel = () => {
 
   const handleEditorChange = (value) => {
     if (value) {
-      console.log(value);
       localStorage.setItem(`editor-code-${language}`, value);
     }
   };
