@@ -1,23 +1,23 @@
 import { currentUser } from "@clerk/nextjs/server";
-import { ConvexHttpClient } from "convex/browser";
-import React from "react";
 import { api } from "../../../../convex/_generated/api";
 import Link from "next/link";
 import { Blocks, Code2, Sparkles } from "lucide-react";
-import ThemeSelector from './ThemeSelector'
-import LanguageSelector from './LanguageSelector'
-import { SignedIn, SignInButton, SignUpButton } from "@clerk/nextjs";
-import RunButton from './RunButton';
-import HeaderProfileBtn from './HeaderProfileBtn';
+import { SignedIn } from "@clerk/nextjs";
+import ThemeSelector from "./ThemeSelector";
+import LanguageSelector from "./LanguageSelector";
+import RunButton from "./RunButton";
+import HeaderProfileBtn from "./HeaderProfileBtn";
+import { ConvexHttpClient } from "convex/browser";
 
-const Header = async () => {
+async function Header() {
   const convex = new ConvexHttpClient(process.env.NEXT_PUBLIC_CONVEX_URL);
-  const user = await currentUser(); // fetching user from clerk
+  const user = await currentUser();
+  // console.log(user);
 
   const convexUser = await convex.query(api.users.getUser, {
     userId: user?.id || "",
   });
-  // console.log(convexUser)
+console.log(convexUser)
   return (
     <div className="relative z-10">
       <div
@@ -92,12 +92,8 @@ const Header = async () => {
               </span>
             </Link>
           )}
-
-          <SignedIn>
-            <RunButton />
-          </SignedIn>
-          <SignInButton/>
-          <SignUpButton/>
+          {convexUser &&<RunButton />}
+            
 
           <div className="pl-3 border-l border-gray-800">
             <HeaderProfileBtn />
@@ -106,6 +102,5 @@ const Header = async () => {
       </div>
     </div>
   );
-};
-
+}
 export default Header;

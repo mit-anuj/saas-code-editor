@@ -8,11 +8,12 @@ import useMounted from '../../../hooks/useMounted';
 const ProfileHeader = ({userStats,userData,user}) => {
   const starredSnippets = useQuery(api.snippets.getStarredSnippets);
   const mounted = useMounted();
-  console.log(starredSnippets);
+  // console.log(starredSnippets);
+  console.log(user);
   const STATS = [
     {
       label: "Code Executions",
-      value: userStats?.totalExecutions ?? 0,
+      value: userStats?.totalExe.cutions ?? 0,
       icon: Activity,
       color: "from-blue-500 to-cyan-500",
       gradient: "group-hover:via-blue-400",
