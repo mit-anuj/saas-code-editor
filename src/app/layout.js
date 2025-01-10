@@ -17,10 +17,7 @@ const geistMono = localFont({
   variable: "--font-geist-mono",
   weight: "100 900",
 });
-export const  metadata = {
-  title: 'Code Craft',
-  description: 'Share and run code snippets'
-};
+
 export default function RootLayout({ children }) {
   // const mounted = useMounted();
   // if(!mounted) return null;
